@@ -1,5 +1,5 @@
 FROM alpine:3.20
-
+ENV CMAKE_POLICY_VERSION_MINIMUM=3.5
 # Install the packages we need. Avahi will be included
 RUN echo -e "https://dl-cdn.alpinelinux.org/alpine/edge/testing\nhttps://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories &&\
 	apk add --update cups \
