@@ -53,6 +53,6 @@ services:
 * ***After configuring your printer, you need to close the web browser for at least 60 seconds. CUPS will not write the config files until it detects the connection is closed for as long as a minute.***
 
 ## Credits
-* [chuckcharlie](https://github.com/chuckcharlie/docker-cups-airprint) for the 'Alpine Port' and ongoing enhancements
+* [chuckcharlie](https://github.com/chuckcharlie/docker-cups-airprint) for the `Alpine Port` and ongoing enhancements
 * [quadportnick](https://github.com/quadportnick/docker-cups-airprint) for the original repository
-* [tjfontaine](https://github.com/tjfontaine/airprint-generate) for 'airprint-generate.py'
+* [tjfontaine](https://github.com/tjfontaine/airprint-generate) for `airprint-generate.py`
