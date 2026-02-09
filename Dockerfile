@@ -31,6 +31,16 @@ RUN apk add --no-cache git cmake && \
     cd .. && \
     rm -rf brlaser
 
+# Build and install cups-bjnp from source
+RUN wget -O cups-bjnp-2.0.3.tar.gz https://sourceforge.net/projects/cups-bjnp/files/cups-bjnp/2.0.3/cups-bjnp-2.0.3.tar.gz/download && \
+    tar -xvf cups-bjnp-2.0.3.tar.gz && \
+    cd cups-bjnp-2.0.3 && \
+    ./configure --disable-Werror && \
+    make && \
+    make install && \
+    cd .. && \
+    rm -rf cups-bjnp-2.0.3 cups-bjnp-2.0.3.tar.gz
+
 # Build and install gutenprint from source
 RUN wget -O gutenprint-5.3.5.tar.xz https://sourceforge.net/projects/gimp-print/files/gutenprint-5.3/5.3.5/gutenprint-5.3.5.tar.xz/download && \
     tar -xJf gutenprint-5.3.5.tar.xz && \
