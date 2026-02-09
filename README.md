@@ -5,7 +5,7 @@ Fork from [chuckcharlie/docker-cups-airprint](https://github.com/chuckcharlie/do
 ### Now supports ARM64 and AMD64!
 Use the *latest* or *version#* tags to auto choose the right architecture.
 
-This Alpine-based Docker image runs a CUPS instance that is meant as an AirPrint relay for printers that are already on the network but not AirPrint capable. I modified [chuckcharlie's cups-avaihi-airprint image](https://github.com/chuckcharlie/cups-avahi-airprint/releases/latest) to include the cups-backend-bjnp package built from source for Alpine. This will add support for older Canon printers using the proprietary USB over IP BJNP protocol.
+This Alpine-based Docker image runs a CUPS instance that is meant as an AirPrint relay for printers that are already on the network but not AirPrint capable. I modified [*chuckcharlie's cups-avaihi-airprint image*](https://github.com/chuckcharlie/cups-avahi-airprint/releases/latest) to include the cups-backend-bjnp package built from source for Alpine. This will add support for older Canon printers using the proprietary USB over IP BJNP protocol.
 
 ## Configuration
 
@@ -53,6 +53,6 @@ services:
 * ***After configuring your printer, you need to close the web browser for at least 60 seconds. CUPS will not write the config files until it detects the connection is closed for as long as a minute.***
 
 ## Credits
-* [chuckcharlie](https://github.com/chuckcharlie/docker-cups-airprint) for the 'Alpine Port' and ongoing enhancements.
-* [quadportnick](https://github.com/quadportnick/docker-cups-airprint)
-* [tjfontaine](https://github.com/tjfontaine/airprint-generate)
+* [chuckcharlie](https://github.com/chuckcharlie/docker-cups-airprint) for the 'Alpine Port' and ongoing enhancements
+* [quadportnick](https://github.com/quadportnick/docker-cups-airprint) for the original repository
+* [tjfontaine](https://github.com/tjfontaine/airprint-generate) for 'airprint-generate.py'
