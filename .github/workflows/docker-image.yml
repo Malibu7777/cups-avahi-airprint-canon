@@ -21,4 +21,4 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: $DOCKERHUB_USERNAME/$IMAGE_REPO_NAME:latest
+          tags: username/cups-avahi-airprint-canon:latest
