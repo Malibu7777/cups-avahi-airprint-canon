@@ -1,4 +1,4 @@
-FROM alpine:3.20
+FROM alpine:3.23
 ENV CMAKE_POLICY_VERSION_MINIMUM=3.5
 # Install the packages we need. Avahi will be included
 RUN echo -e "https://dl-cdn.alpinelinux.org/alpine/edge/testing\nhttps://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories &&\
@@ -9,7 +9,7 @@ RUN echo -e "https://dl-cdn.alpinelinux.org/alpine/edge/testing\nhttps://dl-cdn.
 	cups-filters \
 	cups-dev \
 	ghostscript \
-	hplip \
+#	hplip \
 	avahi \
 	inotify-tools \
 	python3 \
