@@ -1,11 +1,11 @@
-# chuckcharlie/cups-avahi-airprint
+# Malibu777/cups-avahi-airprint-canon
 
-Fork from [quadportnick/docker-cups-airprint](https://github.com/quadportnick/docker-cups-airprint)
+Fork from [chuckcharlie/docker-cups-airprint](https://github.com/chuckcharlie/docker-cups-airprint)
 
 ### Now supports ARM64 and AMD64!
 Use the *latest* or *version#* tags to auto choose the right architecture.
 
-This Alpine-based Docker image runs a CUPS instance that is meant as an AirPrint relay for printers that are already on the network but not AirPrint capable. The other images out there never seemed to work right. I forked the original to use Alpine instead of Ubuntu and work on more host OS's.
+This Alpine-based Docker image runs a CUPS instance that is meant as an AirPrint relay for printers that are already on the network but not AirPrint capable. I modified [chuckcharlie's cups-avaihi-airprint image](https://github.com/chuckcharlie/cups-avahi-airprint/releases/latest) to include the cups-backend-bjnp package built from source for Alpine. This will add support for older Canon printers using the proprietary USB over IP BJNP protocol.
 
 ## Configuration
 
@@ -27,7 +27,7 @@ docker run --name cups --restart unless-stopped  --net host\
   -v <your config dir>:/config \
   -e CUPSADMIN="<username>" \
   -e CUPSPASSWORD="<password>" \
-  chuckcharlie/cups-avahi-airprint:latest
+  Malibu7777/cups-avahi-airprint-canon:latest
 ```
 
 ### Example docker compose config:
@@ -35,7 +35,7 @@ docker run --name cups --restart unless-stopped  --net host\
 version: '3.5'
 services:
   cups:
-    image: chuckcharlie/cups-avahi-airprint:latest
+    image: Malibu7777/cups-avahi-airprint-canon:latest
     container_name: cups
     network_mode: host
     volumes:
@@ -52,3 +52,7 @@ services:
 * Make sure you select `Share This Printer` when configuring the printer in CUPS.
 * ***After configuring your printer, you need to close the web browser for at least 60 seconds. CUPS will not write the config files until it detects the connection is closed for as long as a minute.***
 
+## Credits
+* [chuckcharlie](https://github.com/chuckcharlie/docker-cups-airprint) for the 'Alpine Port' and ongoing enhancements.
+* [quadportnick](https://github.com/quadportnick/docker-cups-airprint)
+* [tjfontaine](https://github.com/tjfontaine/airprint-generate)
