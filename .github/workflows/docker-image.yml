@@ -1,24 +1,59 @@
-name: build and push docker image
+name: Docker Multi-Arch Build and Push
 
 on:
+  workflow_dispatch:
   push:
+    branches: [ master ]
+    # Publish semver tags as releases.
+    tags: [ 'v*.*.*' ]
+  pull_request:
+    branches: [ master ]
 
 jobs:
-  docker:
+  build_and_push:
     runs-on: ubuntu-latest
     steps:
-      -
-        name: Login to Docker Hub
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up QEMU
+        # Required for cross-platform builds on an AMD64 host
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        # Enables advanced build features like multi-arch builds and caching
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to Docker Hub
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-      -
-        name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-      -
-        name: Build and push
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_TOKEN }}
+
+      - name: Extract Docker metadata
+        # Generates tags and labels automatically from git events
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ secrets.DOCKER_USERNAME }}/cups-avahi-airprint-bjnp # Replace with your image name
+          tags: |
+            type=schedule,pattern=nightly
+            type=ref,event=branch
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=sha,format=long,prefix=sha-
+            type=sha,format=short
+
+      - name: Build and push multi-architecture image
         uses: docker/build-push-action@v6
         with:
-          push: true
-          tags: jna74/cups-avahi-airprint-bjnp:latest
+          context: . # The build context (root directory of your repo)
+          platforms: |
+            linux/amd64
+            linux/arm64
+            linux/arm/v7
+          push: true # Pushes the image to Docker Hub
+          tags: |
+            ${{ steps.meta.outputs.tags }} # Uses the generated tags from metadata-action
+            jna74/cups-avahi-airprint-bjnp:latest
+          labels: ${{ steps.meta.outputs.labels }} # Uses the generated labels
