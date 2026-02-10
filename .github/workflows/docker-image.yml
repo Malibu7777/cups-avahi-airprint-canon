@@ -54,12 +54,14 @@ jobs:
             ${{ env.REGISTRY_GHCR }}/${{ env.IMAGE_NAME }}
             ${{ env.REGISTRY_DOCKER }}/${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}
           tags: |
-            type=ref,event=branch
+            #type=ref,event=branch
             type=ref,event=pr
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
             type=sha
-
+            type=raw,value=latest,enable={{is_default_branch}}
+          flavor: |
+            latest=false
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
