@@ -1,0 +1,16 @@
+version: 2
+updates:
+  # Maintain dependencies for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    assignees:
+      - "Malibu7777"
+  # Check for Docker image updates
+#  - package-ecosystem: "docker"
+#    directory: "/caddy-cloudns"
+#    schedule:
+#      interval: "daily"
+#    assignees:
+#      - "Malibu7777"
