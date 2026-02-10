@@ -27,15 +27,15 @@ jobs:
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_TOKEN }}
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Extract Docker metadata
         # Generates tags and labels automatically from git events
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ secrets.DOCKER_USERNAME }}/cups-avahi-airprint-bjnp # Replace with your image name
+          images: ${{ secrets.DOCKERHUB_USERNAME }}/cups-avahi-airprint-bjnp # Replace with your image name
           tags: |
             type=schedule,pattern=nightly
             type=ref,event=branch
