@@ -4,9 +4,9 @@ on:
   push:
     branches: [ "main" ]
     # Publish semver tags as releases.
-    #tags: [ 'v*.*.*' ]
-    release:
-      type: [ "created" ]
+    tags: [ 'v*.*.*' ]
+  release:
+    types: [ "created" ]
 
 env:
   # Use docker.io for Docker Hub if empty
